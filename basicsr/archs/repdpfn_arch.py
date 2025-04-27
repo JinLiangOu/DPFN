@@ -52,7 +52,7 @@ class RepBSConvU(nn.Module):
                  padding,
                  dilation,
                  bias=True,
-                 deploy=False):
+                 deploy=True):
         super(RepBSConvU, self).__init__()
         self.in_channels = in_channels
         self.out_channels = out_channels
@@ -175,7 +175,7 @@ class HyperDistillationRef(nn.Module):
                                     1,
                                     1,
                                     1)
-        self.layer_uc2 = BSConvU(main_channels,
+        self.layer_uc2 = RepBSConvU(main_channels,
                                  main_channels,
                                  3,
                                  1,
@@ -187,7 +187,7 @@ class HyperDistillationRef(nn.Module):
                                     1,
                                     2,
                                     1)
-        self.layer_uc4 = BSConvU(main_channels,
+        self.layer_uc4 = RepBSConvU(main_channels,
                                  main_channels,
                                  5,
                                  1,
@@ -359,7 +359,7 @@ class DualSpaitalAttention(nn.Module):
     def __init__(self,
                  in_channels,
                  out_channels,
-                 simple = False):
+                 simple = True):
         super(DualSpaitalAttention, self).__init__()
         mid_channels = in_channels // 8
         self.conv1 = nn.Conv2d(in_channels,
@@ -376,7 +376,7 @@ class DualSpaitalAttention(nn.Module):
                                 1,
                                 1, 
                                 deploy=simple)
-        self.conv3 = BSConvU(mid_channels,
+        self.conv3 = RepBSConvU(mid_channels,
                                 mid_channels,
                                 3,
                                 1,
@@ -390,7 +390,7 @@ class DualSpaitalAttention(nn.Module):
                                 2,
                                 1, 
                                 deploy=simple)
-        self.conv5 = BSConvU(mid_channels,
+        self.conv5 = RepBSConvU(mid_channels,
                                 mid_channels,
                                 5,
                                 1,
@@ -481,7 +481,7 @@ class REPDPFN(nn.Module):
                  out_dim=3,
                  upscale=4,
                  upsampler='pixelshuffledirect'):
-        super(REPDCFN, self).__init__()
+        super(REPDPFN, self).__init__()
         self.mc = main_channels
         self.hc = hyper_channels
 
