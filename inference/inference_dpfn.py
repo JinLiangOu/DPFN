@@ -15,11 +15,11 @@ def main():
         '--model_path',
         type=str,
         default=  # noqa: E251
-        'experiments/pretrained_models/LKDN/LKDN_x4.pth'  # noqa: E501
+        'experiments/pretrained_models/net_g_DPFN_x4.pth'  # noqa: E501
     )
     parser.add_argument(
         '--input', type=str, default='datasets/DIV2K/DIV2K_valid_LR_bicubic/X4', help='input test image folder')
-    parser.add_argument('--output', type=str, default='results/LKDN', help='output folder')
+    parser.add_argument('--output', type=str, default='results/DPFN', help='output folder')
     args = parser.parse_args()
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
