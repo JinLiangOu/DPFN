@@ -17,8 +17,8 @@ python setup.py develop
 ## How To Test
 
 - Refer to `./options/test/DPFN
-- The pretrained models are available in `./experiments/pretrained_models/DPFN`.
-- Then run the follwing codes (taking `DPFN_x4.pth` as an example):
+- The pretrained models are available in `./experiments/pretrained_models`.
+- Then run the follwing codes (taking `net_g_DPFN_x4.pth` as an example):
 
 ```
 python basicsr/test.py -opt options/test/DPFN/test_dpfn_x4.yml
@@ -28,7 +28,6 @@ The testing results will be saved in the `./results` folder.
 
 - Refer to `./inference` for **inference** without the ground truth image.
 - Refer to `./basicsr/calculate_params_flops.py` for calculating the **parameters and flops.**
-- Please note that the RepDPFN in the basicsr/arch has not undergone convolutional reparameterization. If required, please process it using the reparameter function.
 
 ## How To Train
 
